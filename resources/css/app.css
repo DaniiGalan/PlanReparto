@@ -1,11 +1,98 @@
-@import 'tailwindcss';
+/* Cargar Bootstrap */
+@import "bootstrap/dist/css/bootstrap.min.css";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* Paleta y ajustes generales */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f8ff;
+    color: #1c1c1c;
+    margin: 0;
+    padding: 0;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Navegación */
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #24408f;
+    font-weight: bold;
+}
+
+/* Formularios */
+.form-label {
+    font-weight: 600;
+    color: #24408f;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    border-radius: 6px;
+}
+
+.form-check-label {
+    font-weight: 500;
+    color: #1c1c1c;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #24408f;
+    border-color: #24408f;
+}
+
+.btn-primary:hover {
+    background-color: #1a3171;
+    border-color: #1a3171;
+}
+
+/* Tarjetas */
+.card {
+    background: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Alertas */
+.alert {
+    border-radius: 6px;
+}
+
+/* Tablas */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+}
+
+th {
+    background-color: #24408f;
+    color: white;
+    font-weight: 600;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #e3e6ed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 10px;
+    }
 }
