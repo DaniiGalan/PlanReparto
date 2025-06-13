@@ -10,14 +10,16 @@ class Envio extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre_cliente',
-        'direccion',
         'zona',
+        'nombre_cliente',
+        'pedido',
+        'destinatario',
         'etiqueta_pdf',
-        'listado_id',
         'enlistado',
         'bultos',
-        'palets'
+        'palets',
+        'usar_palets',
+        'listado_id',
     ];
 
     public function listado()

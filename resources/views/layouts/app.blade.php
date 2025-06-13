@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarContenido">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('envios.create') }}">Crear Etiquetas</a>
+                        <a class="nav-link" href="{{ route('envios.create') }}">Crear Envíos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('envios.index') }}">Historial Envíos</a>
@@ -50,5 +50,8 @@
 
         @yield('content')
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

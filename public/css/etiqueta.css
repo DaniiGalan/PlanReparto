@@ -1,0 +1,53 @@
+@page {
+    size: 100mm 100mm;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.etiqueta {
+    width: 100mm;
+    height: 100mm;
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido {
+    width: 84mm;
+    height: 84mm;
+    padding: 4mm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.espacio-logo {
+    height: 25mm;
+    margin-bottom: 10px;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+}
+
+.campos > div {
+    margin-bottom: 8px;
+}
+
+.incidencia {
+    color: #000;
+}

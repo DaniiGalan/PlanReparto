@@ -1,78 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <style>
-        @page {
-            size: 100mm 100mm;
-            margin: 0;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .etiqueta {
-            width: 100mm;
-            height: 100mm;
-            box-sizing: border-box;
-            padding: 10mm;
-            page-break-after: always;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-family: sans-serif;
-        }
-
-        .titulo {
-            text-align: center;
-            font-size: 16pt;
-            font-weight: bold;
-            color: #24408f;
-        }
-
-        .datos {
-            font-size: 11pt;
-            line-height: 1.4;
-        }
-
-        .dato {
-            margin-bottom: 3px;
-        }
-
-        .footer {
-            font-size: 10pt;
-            text-align: right;
-        }
-
-        .numero {
-            font-weight: bold;
-            text-align: right;
-            font-size: 12pt;
-            margin-top: 10px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title>Etiqueta de Envío</title>
+    <link rel="stylesheet" href="{{ public_path('css/etiqueta.css') }}">
 </head>
 <body>
-    @for ($i = 1; $i <= $cantidad; $i++)
-        <div class="etiqueta">
-            <div class="titulo">ETIQUETA DE ENVÍO</div>
+@for ($i = 1; $i <= $cantidad; $i++)
+    <div class="etiqueta" style="{{ $i < $cantidad ? 'page-break-after: always;' : '' }}">
+        <div class="contenido">
 
-            <div class="datos">
-                <div class="dato"><strong>Zona:</strong> {{ $envio->zona }}</div>
-                <div class="dato"><strong>Cliente:</strong> {{ $envio->nombre_cliente }}</div>
-                <div class="dato"><strong>Destinatario:</strong> {{ $envio->destinatario ?? $envio->nombre_cliente }}</div>
-                <div class="dato"><strong>Pedido:</strong> {{ $envio->direccion }}</div>
-                <div class="dato"><strong>Bultos:</strong> {{ $envio->bultos ?? '-' }}</div>
-                <div class="dato"><strong>Palets:</strong> {{ $envio->palets ?? '-' }}</div>
-                <div class="dato"><strong>Fecha:</strong> {{ $envio->created_at->format('d/m/Y') }}</div>
+            {{-- Espacio reservado para logo --}}
+            <div class="espacio-logo"></div>
+
+            <div class="campos">
+                <div>CLIENTE: {{ $envio->nombre_cliente }}</div>
+
+                <div>
+                    PEDIDO:
+                    <span class="{{ $envio->pedido === 'INCIDENCIA' ? 'incidencia' : '' }}">
+                        {{ $envio->pedido }}
+                    </span>
+                </div>
+
+                <div>ZONA: {{ $envio->zona }}</div>
+
+                @if(!empty($envio->destinatario))
+                    <div>DESTINATARIO: {{ $envio->destinatario }}</div>
+                @endif
+
+                @if($envio->usar_palets)
+                    <div>BULTOS: {{ $envio->bultos ?? '-' }}</div>
+                    <div>PALET: {{ $i }}/{{ $cantidad }}</div>
+                @else
+                    <div>BULTOS: {{ $i }}/{{ $cantidad }}</div>
+                @endif
             </div>
 
-            <div class="numero">{{ $i }}/{{ $cantidad }}</div>
-            <div class="footer">PlanReparto</div>
         </div>
-    @endfor
+    </div>
+@endfor
 </body>
 </html>

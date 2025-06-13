@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $listado->id }}</td>
                             <td>{{ $listado->zona }}</td>
-                            <td>{{ $listado->fecha->format('d/m/Y') }}</td>
+                            <td>{{ $listado->fecha }}</td>
                             <td>{{ $listado->envios_count }}</td>
                             <td>
                                 @if ($listado->pdf_path)
