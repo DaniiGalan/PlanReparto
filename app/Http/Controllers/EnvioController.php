@@ -27,8 +27,8 @@ class EnvioController extends Controller
             'nombre_cliente' => 'required|string|max:27',
             'pedido' => ['required', 'regex:/^(P\d{7}|INCIDENCIA)$/'],
             'destinatario' => $request->activar_destinatario ? 'required|string|max:27' : 'nullable|string|max:27',
-            'bultos' => 'nullable|integer|min:1',
-            'palets' => 'nullable|integer|min:1',
+            'bultos' => 'required|integer|min:1',
+            'palets' => $request->has('usar_palets') ? 'required|integer|min:1' : 'nullable|integer',
         ]);
 
         $envio = Envio::create([
@@ -39,7 +39,7 @@ class EnvioController extends Controller
             'etiqueta_pdf' => null,
             'enlistado' => false,
             'bultos' => $request->bultos,
-            'palets' => $request->usar_palets ? $request->palets : null,
+            'palets' => $request->has('usar_palets') ? $request->palets : null,
             'usar_palets' => $request->has('usar_palets'),
         ]);
 

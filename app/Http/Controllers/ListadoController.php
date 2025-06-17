@@ -10,10 +10,25 @@ use Illuminate\Support\Facades\Storage;
 
 class ListadoController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $envios = Envio::where('enlistado', false)->get();
-        return view('listados.create', compact('envios'));
+        $zona = $request->input('zona', 'TODOS');
+        $estado = $request->input('estado', 'no_enlistados');
+        $buscar = $request->input('buscar');
+
+        $envios = Envio::when($zona !== 'TODOS', fn($q) => $q->where('zona', $zona))
+            ->when($estado === 'enlistados', fn($q) => $q->where('enlistado', true))
+            ->when($estado === 'no_enlistados', fn($q) => $q->where('enlistado', false))
+            ->when($buscar, function ($q) use ($buscar) {
+                $q->where(function ($sub) use ($buscar) {
+                    $sub->where('nombre_cliente', 'like', "%$buscar%")
+                        ->orWhere('pedido', 'like', "%$buscar%");
+                });
+            })
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('listados.create', compact('envios', 'zona', 'estado', 'buscar'));
     }
 
     public function store(Request $request)
@@ -24,8 +39,21 @@ class ListadoController extends Controller
             return back()->with('error', 'Debes seleccionar al menos un envío.');
         }
 
+        $zona = $request->input('zona');
+
+        if ($zona === 'TODOS') {
+            return back()->with('error', 'No se pueden crear listados mezclando zonas.');
+        }
+
+        $envios = Envio::whereIn('id', $enviosSeleccionados)->get();
+        foreach ($envios as $envio) {
+            if ($envio->zona !== $zona) {
+                return back()->with('error', 'Todos los envíos deben pertenecer a la zona seleccionada.');
+            }
+        }
+
         $listado = Listado::create([
-            'zona' => $request->zona,
+            'zona' => $zona,
             'fecha' => now(),
         ]);
 

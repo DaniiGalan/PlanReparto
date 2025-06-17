@@ -90,6 +90,38 @@ td, th {
     border: 1px solid #e3e6ed;
 }
 
+/* Paginacion */
+.pagination {
+    margin-top: 1rem;
+}
+
+.pagination .page-link {
+    color: #0d6efd;
+    border: 1px solid #dee2e6;
+    padding: 0.4rem 0.75rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+    background-color: #e9f3ff;
+    color: #0a58ca;
+    border-color: #b6d4fe;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #adb5bd;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
