@@ -12,10 +12,10 @@
                 <label for="zona" class="form-label">Zona</label>
                 <select name="zona" id="zona" class="form-select @error('zona') is-invalid @enderror" required>
                     <option value="">Selecciona una zona</option>
-                    <option value="NOR">NOR</option>
+                    <option value="NOR">NORTE</option>
                     <option value="SUR">SUR</option>
-                    <option value="GC">GC</option>
-                    <option value="RHE">RHE</option>
+                    <option value="GC">GRAN CANARIA</option>
+                    <option value="RHE">RHENUS</option>
                     <option value="TEN">TEN</option>
                     <option value="CLI">CLI</option>
                 </select>

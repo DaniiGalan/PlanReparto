@@ -11,11 +11,12 @@
                 <label for="zona" class="form-label">Zona</label>
                 <select name="zona" id="zona" class="form-select" onchange="this.form.submit()">
                     <option value="TODOS" {{ request('zona', 'TODOS') == 'TODOS' ? 'selected' : '' }}>TODOS</option>
-                    <option value="NORTE" {{ request('zona') == 'NORTE' ? 'selected' : '' }}>NORTE</option>
+                    <option value="NOR" {{ request('zona') == 'NORTE' ? 'selected' : '' }}>NOR</option>
                     <option value="SUR" {{ request('zona') == 'SUR' ? 'selected' : '' }}>SUR</option>
-                    <option value="GRAN CANARIA" {{ request('zona') == 'GRAN CANARIA' ? 'selected' : '' }}>GRAN CANARIA</option>
-                    <option value="RHENUS" {{ request('zona') == 'RHENUS' ? 'selected' : '' }}>RHENUS</option>
-                    <option value="TENEPALMA" {{ request('zona') == 'TENEPALMA' ? 'selected' : '' }}>TENEPALMA</option>
+                    <option value="GC" {{ request('zona') == 'GRAN CANARIA' ? 'selected' : '' }}>GC</option>
+                    <option value="RHE" {{ request('zona') == 'RHENUS' ? 'selected' : '' }}>RHE</option>
+                    <option value="TEN" {{ request('zona') == 'TENEPALMA' ? 'selected' : '' }}>TEN</option>
+                    <option value="CLI" {{ request('zona') == 'CLI' ? 'selected' : '' }}>CLI</option>
                 </select>
             </div>
 
